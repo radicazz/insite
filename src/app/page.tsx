@@ -35,7 +35,9 @@ export default function Home() {
           <nav className={styles.nav}>
             <a href="#services">Services</a>
             <a href="#testimonials">Testimonials</a>
-            <a href="#contact">Contact</a>
+            <a className={styles.contactCta} href="#contact">
+              Contact
+            </a>
           </nav>
         </header>
 
