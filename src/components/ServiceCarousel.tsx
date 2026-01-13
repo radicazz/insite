@@ -18,6 +18,8 @@ const ROTATE_MS = 5200;
 export default function ServiceCarousel({ services }: ServiceCarouselProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const [dragStartX, setDragStartX] = useState<number | null>(null);
+  const [dragOffset, setDragOffset] = useState(0);
 
   useEffect(() => {
     if (services.length <= 1 || isPaused) {
@@ -44,6 +46,41 @@ export default function ServiceCarousel({ services }: ServiceCarouselProps) {
     setActiveIndex((current) => (current + 1) % services.length);
   };
 
+  const handlePointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (event.pointerType === "mouse" && event.button !== 0) {
+      return;
+    }
+    setIsPaused(true);
+    setDragStartX(event.clientX);
+    event.currentTarget.setPointerCapture(event.pointerId);
+  };
+
+  const handlePointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (dragStartX === null) {
+      return;
+    }
+    setDragOffset(event.clientX - dragStartX);
+  };
+
+  const handlePointerUp = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (dragStartX === null) {
+      return;
+    }
+    const delta = event.clientX - dragStartX;
+    const threshold = 70;
+
+    if (delta > threshold) {
+      handlePrev();
+    } else if (delta < -threshold) {
+      handleNext();
+    }
+
+    setDragOffset(0);
+    setDragStartX(null);
+    setIsPaused(false);
+    event.currentTarget.releasePointerCapture(event.pointerId);
+  };
+
   return (
     <div
       className={styles.carousel}
@@ -52,10 +89,18 @@ export default function ServiceCarousel({ services }: ServiceCarouselProps) {
       onFocusCapture={() => setIsPaused(true)}
       onBlurCapture={() => setIsPaused(false)}
     >
-      <div className={styles.viewport}>
+      <div
+        className={styles.viewport}
+        onPointerDown={handlePointerDown}
+        onPointerMove={handlePointerMove}
+        onPointerUp={handlePointerUp}
+        onPointerCancel={handlePointerUp}
+      >
         <div
-          className={styles.track}
-          style={{ transform: `translateX(-${activeIndex * 100}%)` }}
+          className={`${styles.track} ${dragStartX !== null ? styles.trackDragging : ""}`}
+          style={{
+            transform: `translateX(calc(-${activeIndex * 100}% + ${dragOffset}px))`,
+          }}
           aria-live="polite"
         >
           {services.map((service) => (

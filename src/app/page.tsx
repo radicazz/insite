@@ -46,7 +46,7 @@ export default function Home() {
             <div>
               <p className={styles.eyebrow}>Insites Studio</p>
               <h1 className={styles.heroTitle}>
-                Modern websites and growth systems for ambitious brands.
+                Modern websites for ambitious brands.
               </h1>
               <p className={styles.lead}>
                 We craft high-performance digital experiences, social campaigns,
