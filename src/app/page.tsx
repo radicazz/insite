@@ -4,21 +4,21 @@ import styles from "./page.module.css";
 
 const services = [
   {
-    title: "Websites",
+    title: "Web-solutions",
     summary:
-      "Design-forward, conversion-ready sites built to perform fast and scale with your business.",
+      "Brand-specific, design-centric, user-oriented sites built for performance and scalability with your business.",
     features: ["Brand strategy + UX", "Custom design systems", "SEO + analytics ready"],
   },
   {
     title: "Social Media Packages",
     summary:
-      "Content, cadence, and campaign support built to keep your audience engaged and growing.",
+      "Content, cadence, and campaign support and management built to keep your audience engaged and growing.",
     features: ["Campaign planning", "Creative direction", "Performance reporting"],
   },
   {
-    title: "AI Training",
+    title: "AI Integration & Training",
     summary:
-      "Practical enablement that helps teams use AI with confidence, efficiency, and clarity.",
+      "Practical enablement that helps individuals or teams use AI with confidence, efficiency, and clarity.",
     features: ["Team workshops", "Workflow playbooks", "Toolchain setup"],
   },
 ];
@@ -48,9 +48,9 @@ export default function Home() {
         <main className={styles.main}>
           <section className={styles.hero}>
             <div>
-              <p className={styles.eyebrow}>Insites Studio</p>
+              <p className={styles.eyebrow}>Insites Global</p>
               <h1 className={styles.heroTitle}>
-                Modern websites for ambitious brands.
+                Your success is insight.
               </h1>
               <p className={styles.lead}>
                 We craft high-performance digital experiences, social campaigns,
