@@ -1,3 +1,4 @@
+import ContactForm from "@/components/ContactForm";
 import styles from "./page.module.css";
 
 const services = [
@@ -32,7 +33,7 @@ export default function Home() {
           </div>
           <nav className={styles.nav}>
             <a href="#services">Services</a>
-            <a href="mailto:hello@insites.studio">Contact</a>
+            <a href="#contact">Contact</a>
           </nav>
           <a className={styles.headerCta} href="#services">
             Start a project
@@ -109,6 +110,48 @@ export default function Home() {
                   </ul>
                 </article>
               ))}
+            </div>
+          </section>
+
+          <section id="contact" className={styles.contact}>
+            <div className={styles.sectionHeader}>
+              <p className={styles.sectionEyebrow}>Contact</p>
+              <h2 className={styles.sectionTitle}>
+                Tell us about the next chapter for your brand.
+              </h2>
+              <p className={styles.sectionLead}>
+                Share your goals and timeline. We will reply with a tailored
+                plan and recommended next steps.
+              </p>
+            </div>
+
+            <div className={styles.contactGrid}>
+              <ContactForm />
+              <div className={styles.contactCard}>
+                <p className={styles.contactCardTitle}>What happens next</p>
+                <div className={styles.contactList}>
+                  <div>
+                    <span>Response time</span>
+                    1-2 business days
+                  </div>
+                  <div>
+                    <span>Discovery call</span>
+                    30 minutes, focused on goals + scope
+                  </div>
+                  <div>
+                    <span>Start window</span>
+                    Typically within 2-3 weeks
+                  </div>
+                  <div>
+                    <span>Direct email</span>
+                    hello@insites.studio
+                  </div>
+                </div>
+                <div className={styles.contactNote}>
+                  If you have a launch deadline, mention it in your message so
+                  we can align on timing and milestones.
+                </div>
+              </div>
             </div>
           </section>
         </main>
