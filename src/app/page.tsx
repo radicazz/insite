@@ -33,8 +33,12 @@ export default function Home() {
             <span className={styles.brandName}>insites</span>
           </div>
           <nav className={styles.nav}>
-            <a href="#services">Services</a>
-            <a href="#testimonials">Testimonials</a>
+            <a className={styles.navLink} href="#services">
+              Services
+            </a>
+            <a className={styles.navLink} href="#testimonials">
+              Testimonials
+            </a>
             <a className={styles.contactCta} href="#contact">
               Contact
             </a>

@@ -72,8 +72,16 @@
 .nav {
   display: flex;
   gap: 20px;
+  align-items: center;
   font-size: 14px;
   color: var(--text-secondary);
+}
+
+.navLink {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 0;
+  line-height: 1;
 }
 
 .nav a {
