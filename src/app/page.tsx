@@ -64,11 +64,6 @@ export default function Home() {
                   Book a discovery call
                 </a>
               </div>
-              <div className={styles.heroMeta}>
-                <span>Strategy + design</span>
-                <span>Engineering-led delivery</span>
-                <span>Launch-ready in weeks</span>
-              </div>
             </div>
 
             <ServiceCarousel services={services} />

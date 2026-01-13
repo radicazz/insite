@@ -114,7 +114,7 @@
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 56px;
-  align-items: center;
+  align-items: stretch;
 }
 
 .eyebrow {
@@ -172,21 +172,6 @@
   color: var(--text-primary);
 }
 
-.heroMeta {
-  margin-top: 36px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 18px;
-  color: var(--text-secondary);
-  font-size: 14px;
-}
-
-.heroMeta span {
-  padding: 6px 12px;
-  border-radius: 999px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-}
 
 .sectionHeader {
   display: flex;

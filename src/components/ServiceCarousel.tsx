@@ -49,6 +49,8 @@ export default function ServiceCarousel({ services }: ServiceCarouselProps) {
       className={styles.carousel}
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
+      onFocusCapture={() => setIsPaused(true)}
+      onBlurCapture={() => setIsPaused(false)}
     >
       <div className={styles.viewport}>
         <div
