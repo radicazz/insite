@@ -1,4 +1,5 @@
 import ContactForm from "@/components/ContactForm";
+import ServiceCarousel from "@/components/ServiceCarousel";
 import styles from "./page.module.css";
 
 const services = [
@@ -70,19 +71,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className={styles.heroCard}>
-              <p className={styles.cardTitle}>What you get</p>
-              <ul className={styles.cardList}>
-                <li>Elegant, conversion-focused UI/UX</li>
-                <li>Performance-first builds with SEO baked in</li>
-                <li>Content systems built for iteration</li>
-                <li>Clear reporting and ongoing optimization</li>
-              </ul>
-              <div className={styles.cardNote}>
-                From discovery to launch, insites keeps your team aligned with
-                weekly checkpoints and transparent delivery.
-              </div>
-            </div>
+            <ServiceCarousel services={services} />
           </section>
 
           <section id="services" className={styles.services}>

@@ -1,0 +1,130 @@
+.carousel {
+  position: relative;
+  background: var(--surface);
+  border-radius: 24px;
+  border: 1px solid var(--border);
+  padding: 28px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.carousel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top right, rgba(47, 107, 255, 0.18), transparent 55%);
+  pointer-events: none;
+}
+
+.viewport {
+  overflow: hidden;
+}
+
+.track {
+  display: flex;
+  transition: transform 600ms cubic-bezier(0.22, 0.61, 0.36, 1);
+  will-change: transform;
+}
+
+.slide {
+  min-width: 100%;
+  padding: 6px 4px 8px;
+  display: grid;
+  gap: 16px;
+}
+
+.slideHeader {
+  display: grid;
+  gap: 8px;
+}
+
+.slideTitle {
+  font-family: var(--font-space-grotesk), "Helvetica Neue", sans-serif;
+  font-size: 20px;
+}
+
+.slideSummary {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  font-size: 15px;
+}
+
+.featureList {
+  list-style: none;
+  display: grid;
+  gap: 8px;
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.featureList li {
+  padding-left: 18px;
+  position: relative;
+}
+
+.featureList li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 6px;
+  width: 8px;
+  height: 8px;
+  border-radius: 3px;
+  background: var(--accent);
+}
+
+.carouselFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.progress {
+  display: flex;
+  gap: 8px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(47, 107, 255, 0.2);
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.dotActive {
+  background: var(--accent);
+  transform: scale(1.2);
+}
+
+.controls {
+  display: flex;
+  gap: 10px;
+}
+
+.control {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-primary);
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.control:hover {
+  border-color: var(--accent);
+  color: var(--accent-strong);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    transition: none;
+  }
+}

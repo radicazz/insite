@@ -188,53 +188,6 @@
   border: 1px solid var(--border);
 }
 
-.heroCard {
-  background: var(--surface);
-  border-radius: 24px;
-  padding: 32px;
-  box-shadow: var(--shadow);
-  border: 1px solid var(--border);
-}
-
-.cardTitle {
-  font-family: var(--font-space-grotesk), "Helvetica Neue", sans-serif;
-  font-size: 20px;
-  margin-bottom: 12px;
-}
-
-.cardList {
-  display: grid;
-  gap: 12px;
-  color: var(--text-secondary);
-  font-size: 15px;
-}
-
-.cardList li {
-  list-style: none;
-  padding-left: 26px;
-  position: relative;
-}
-
-.cardList li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 6px;
-  width: 12px;
-  height: 12px;
-  border-radius: 4px;
-  background: var(--accent);
-}
-
-.cardNote {
-  margin-top: 24px;
-  padding: 16px;
-  border-radius: 16px;
-  background: var(--surface-muted);
-  color: var(--text-secondary);
-  font-size: 14px;
-}
-
 .sectionHeader {
   display: flex;
   flex-direction: column;
