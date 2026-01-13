@@ -14,19 +14,24 @@ Business website for **insites**, focused on modern, sleek UI/UX and a professio
 - Package manager: pnpm
 - Node.js: current LTS
 
-## Site Structure (Planned)
+## Site Structure
 - **Landing**: overview + services
   - Services: Websites, Social Media Packages, AI Training
 - **Projects/Testimonials**: showcase past work and feedback
 - **Contact**: direct CTA + contact form/info
 
-## Getting Started (Planned)
-> Project scaffolding will be added once the initial setup begins.
-
-Expected local workflow:
+## Getting Started
 ```bash
 pnpm install
 pnpm dev
+```
+
+Other useful scripts:
+```bash
+pnpm lint
+pnpm typecheck
+pnpm build
+pnpm start
 ```
 
 ## Deployment (Planned)
@@ -40,6 +45,6 @@ Target: self-hosted Linux server with systemd. Containerization is expected late
 - Keep commits small and use semantic prefixes (feat, fix, chore, docs, refactor).
 
 ## Next Steps
-- Scaffold Next.js + TypeScript app with pnpm.
 - Define UI system (typography, spacing, color tokens).
 - Add initial content and components for services, testimonials, and contact.
+- Add systemd and container deployment artifacts (Podman preferred, Docker compatible).
