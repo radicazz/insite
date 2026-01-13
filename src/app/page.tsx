@@ -34,11 +34,9 @@ export default function Home() {
           </div>
           <nav className={styles.nav}>
             <a href="#services">Services</a>
+            <a href="#testimonials">Testimonials</a>
             <a href="#contact">Contact</a>
           </nav>
-          <a className={styles.headerCta} href="#services">
-            Start a project
-          </a>
         </header>
 
         <main className={styles.main}>

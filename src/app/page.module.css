@@ -84,24 +84,6 @@
   color: var(--text-primary);
 }
 
-.headerCta {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  border-radius: 999px;
-  padding: 10px 18px;
-  background: var(--text-primary);
-  color: var(--surface);
-  font-size: 14px;
-  font-weight: 600;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  box-shadow: 0 16px 32px rgba(11, 18, 32, 0.2);
-}
-
-.headerCta:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 18px 36px rgba(11, 18, 32, 0.28);
-}
 
 .main {
   display: flex;
@@ -340,8 +322,7 @@
   }
 
   .ctaPrimary,
-  .ctaSecondary,
-  .headerCta {
+  .ctaSecondary {
     width: 100%;
     justify-content: center;
   }
