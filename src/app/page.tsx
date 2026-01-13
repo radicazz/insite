@@ -1,66 +1,118 @@
-import Image from "next/image";
 import styles from "./page.module.css";
+
+const services = [
+  {
+    title: "Websites",
+    summary:
+      "Design-forward, conversion-ready sites built to perform fast and scale with your business.",
+    features: ["Brand strategy + UX", "Custom design systems", "SEO + analytics ready"],
+  },
+  {
+    title: "Social Media Packages",
+    summary:
+      "Content, cadence, and campaign support built to keep your audience engaged and growing.",
+    features: ["Campaign planning", "Creative direction", "Performance reporting"],
+  },
+  {
+    title: "AI Training",
+    summary:
+      "Practical enablement that helps teams use AI with confidence, efficiency, and clarity.",
+    features: ["Team workshops", "Workflow playbooks", "Toolchain setup"],
+  },
+];
 
 export default function Home() {
   return (
     <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.tsx file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
+      <div className={styles.shell}>
+        <header className={styles.header}>
+          <div className={styles.brand}>
+            <span className={styles.brandMark} aria-hidden="true" />
+            <span className={styles.brandName}>insites</span>
+          </div>
+          <nav className={styles.nav}>
+            <a href="#services">Services</a>
+            <a href="mailto:hello@insites.studio">Contact</a>
+          </nav>
+          <a className={styles.headerCta} href="#services">
+            Start a project
           </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+        </header>
+
+        <main className={styles.main}>
+          <section className={styles.hero}>
+            <div>
+              <p className={styles.eyebrow}>Insites Studio</p>
+              <h1 className={styles.heroTitle}>
+                Modern websites and growth systems for ambitious brands.
+              </h1>
+              <p className={styles.lead}>
+                We craft high-performance digital experiences, social campaigns,
+                and AI training programs that turn momentum into measurable
+                growth.
+              </p>
+              <div className={styles.heroActions}>
+                <a className={styles.ctaPrimary} href="#services">
+                  Explore services
+                </a>
+                <a
+                  className={styles.ctaSecondary}
+                  href="mailto:hello@insites.studio"
+                >
+                  Book a discovery call
+                </a>
+              </div>
+              <div className={styles.heroMeta}>
+                <span>Strategy + design</span>
+                <span>Engineering-led delivery</span>
+                <span>Launch-ready in weeks</span>
+              </div>
+            </div>
+
+            <div className={styles.heroCard}>
+              <p className={styles.cardTitle}>What you get</p>
+              <ul className={styles.cardList}>
+                <li>Elegant, conversion-focused UI/UX</li>
+                <li>Performance-first builds with SEO baked in</li>
+                <li>Content systems built for iteration</li>
+                <li>Clear reporting and ongoing optimization</li>
+              </ul>
+              <div className={styles.cardNote}>
+                From discovery to launch, insites keeps your team aligned with
+                weekly checkpoints and transparent delivery.
+              </div>
+            </div>
+          </section>
+
+          <section id="services" className={styles.services}>
+            <div className={styles.sectionHeader}>
+              <p className={styles.sectionEyebrow}>Services</p>
+              <h2 className={styles.sectionTitle}>
+                Everything you need to launch and grow with confidence.
+              </h2>
+              <p className={styles.sectionLead}>
+                Choose a focused engagement or pair multiple services for a
+                fully integrated growth system. We tailor every engagement to
+                your market, audience, and momentum.
+              </p>
+            </div>
+
+            <div className={styles.servicesGrid}>
+              {services.map((service) => (
+                <article key={service.title} className={styles.serviceCard}>
+                  <h3 className={styles.serviceTitle}>{service.title}</h3>
+                  <p className={styles.serviceSummary}>{service.summary}</p>
+                  <ul className={styles.serviceList}>
+                    {service.features.map((feature) => (
+                      <li key={feature}>{feature}</li>
+                    ))}
+                  </ul>
+                </article>
+              ))}
+            </div>
+          </section>
+        </main>
+      </div>
     </div>
   );
 }
