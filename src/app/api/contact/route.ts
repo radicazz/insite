@@ -11,7 +11,12 @@ type ContactPayload = {
 };
 
 export async function POST(request: Request) {
-  const body = (await request.json()) as Partial<ContactPayload>;
+  let body: Partial<ContactPayload> = {};
+  try {
+    body = (await request.json()) as Partial<ContactPayload>;
+  } catch {
+    return NextResponse.json({ error: "Invalid JSON payload." }, { status: 400 });
+  }
 
   if (body.website) {
     return NextResponse.json({ ok: true });

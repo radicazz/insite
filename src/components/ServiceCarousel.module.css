@@ -19,6 +19,14 @@
   pointer-events: none;
 }
 
+.emptyState {
+  margin: auto;
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
 .viewport {
   overflow: hidden;
   flex: 1;
@@ -118,6 +126,11 @@
   transform: scale(1.2);
 }
 
+.dot:disabled {
+  cursor: default;
+  opacity: 0.5;
+}
+
 .controls {
   display: flex;
   gap: 10px;
@@ -138,6 +151,13 @@
 .control:hover {
   border-color: var(--accent);
   color: var(--accent-strong);
+}
+
+.control:disabled {
+  cursor: default;
+  opacity: 0.6;
+  border-color: var(--border);
+  color: var(--text-secondary);
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -4,7 +4,7 @@ import styles from "./page.module.css";
 
 const services = [
   {
-    title: "Web-solutions",
+    title: "Websites",
     summary:
       "Brand-specific, design-centric, user-oriented sites built for performance and scalability with your business.",
     features: ["Brand strategy + UX", "Custom design systems", "SEO + analytics ready"],
@@ -16,10 +16,37 @@ const services = [
     features: ["Campaign planning", "Creative direction", "Performance reporting"],
   },
   {
-    title: "AI Integration & Training",
+    title: "AI Training",
     summary:
       "Practical enablement that helps individuals or teams use AI with confidence, efficiency, and clarity.",
     features: ["Team workshops", "Workflow playbooks", "Toolchain setup"],
+  },
+];
+
+const testimonials = [
+  {
+    project: "Seaboard Collective",
+    result: "Conversion-focused website relaunch",
+    quote:
+      "insites mapped our positioning, rebuilt the site, and delivered a launch that finally matched our brand.",
+    name: "Jordan Lee",
+    title: "Founder",
+  },
+  {
+    project: "Lumen Hospitality",
+    result: "Social media cadence + campaign assets",
+    quote:
+      "We went from inconsistent posting to a clear system with measurable growth in engagement.",
+    name: "Priya Shah",
+    title: "Marketing Lead",
+  },
+  {
+    project: "Northline Ventures",
+    result: "AI training + workflow playbooks",
+    quote:
+      "The workshops were hands-on, and the team now saves hours every week with the new workflows.",
+    name: "Carlos Mendes",
+    title: "Operations Director",
   },
 ];
 
@@ -63,7 +90,7 @@ export default function Home() {
                 </a>
                 <a
                   className={styles.ctaSecondary}
-                  href="mailto:hello@insites.studio"
+                  href="mailto:insitesglobal@gmail.com"
                 >
                   Book a discovery call
                 </a>
@@ -101,6 +128,34 @@ export default function Home() {
             </div>
           </section>
 
+          <section id="testimonials" className={styles.testimonials}>
+            <div className={styles.sectionHeader}>
+              <p className={styles.sectionEyebrow}>Projects & Testimonials</p>
+              <h2 className={styles.sectionTitle}>
+                Proof points that move brands forward.
+              </h2>
+              <p className={styles.sectionLead}>
+                A snapshot of recent engagements and the outcomes they unlocked.
+              </p>
+            </div>
+
+            <div className={styles.testimonialGrid}>
+              {testimonials.map((testimonial) => (
+                <article key={testimonial.project} className={styles.testimonialCard}>
+                  <div className={styles.testimonialMeta}>
+                    <span>Project</span>
+                    {testimonial.project}
+                  </div>
+                  <p className={styles.testimonialResult}>{testimonial.result}</p>
+                  <p className={styles.testimonialQuote}>&ldquo;{testimonial.quote}&rdquo;</p>
+                  <p className={styles.testimonialName}>
+                    {testimonial.name} · {testimonial.title}
+                  </p>
+                </article>
+              ))}
+            </div>
+          </section>
+
           <section id="contact" className={styles.contact}>
             <div className={styles.sectionHeader}>
               <p className={styles.sectionEyebrow}>Contact</p>
@@ -132,7 +187,7 @@ export default function Home() {
                   </div>
                   <div>
                     <span>Direct email</span>
-                    hello@insites.studio
+                    insitesglobal@gmail.com
                   </div>
                 </div>
                 <div className={styles.contactNote}>

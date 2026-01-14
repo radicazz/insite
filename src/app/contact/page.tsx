@@ -13,7 +13,7 @@ export default function ContactPage() {
           </div>
           <nav className={styles.nav}>
             <Link href="/">Home</Link>
-            <a href="mailto:hello@insites.studio">Email</a>
+            <a href="mailto:insitesglobal@gmail.com">Email</a>
           </nav>
         </header>
 
@@ -32,7 +32,7 @@ export default function ContactPage() {
             <div className={styles.detailList}>
               <div>
                 <span>Email</span>
-                hello@insites.studio
+                insitesglobal@gmail.com
               </div>
               <div>
                 <span>Response time</span>
