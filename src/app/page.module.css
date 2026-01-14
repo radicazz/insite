@@ -58,11 +58,12 @@
 }
 
 .brandMark {
-  width: 16px;
-  height: 16px;
-  border-radius: 6px;
-  background: linear-gradient(135deg, var(--accent) 0%, #94b4ff 100%);
-  box-shadow: 0 0 0 6px rgba(47, 107, 255, 0.12);
+  width: 26px;
+  height: 26px;
+  background-image: url("/logos/insites-network-eye.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
 }
 
 .brandName {
@@ -342,16 +343,22 @@
 
   .nav {
     flex-wrap: wrap;
+    gap: 14px;
   }
 
   .heroActions {
     width: 100%;
+    flex-direction: column;
   }
 
-  .ctaPrimary,
-  .ctaSecondary,
-  .contactCta {
+  .heroActions .ctaPrimary,
+  .heroActions .ctaSecondary {
     width: 100%;
     justify-content: center;
+  }
+
+  .nav .contactCta {
+    padding: 8px 14px;
+    font-size: 13px;
   }
 }
