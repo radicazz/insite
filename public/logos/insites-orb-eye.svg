@@ -1,0 +1,30 @@
+<svg width="200" height="200" viewBox="0 0 200 200"
+     xmlns="http://www.w3.org/2000/svg" fill="none">
+
+  <!-- Orb -->
+  <circle cx="100" cy="100" r="78" fill="#1F8ED6"/>
+
+  <!-- Orbit Lines -->
+  <path d="M30 100 C60 40, 140 40, 170 100"
+        stroke="#A7E4FF" stroke-width="4" fill="none"/>
+  <path d="M30 100 C60 160, 140 160, 170 100"
+        stroke="#A7E4FF" stroke-width="4" fill="none"/>
+
+  <!-- Orbit Nodes -->
+  <g fill="#FFFFFF">
+    <circle cx="60" cy="60" r="6"/>
+    <circle cx="150" cy="90" r="6"/>
+    <circle cx="120" cy="150" r="6"/>
+  </g>
+
+  <!-- Eye -->
+  <path d="M45 100 C65 75, 135 75, 155 100
+           C135 125, 65 125, 45 100 Z"
+        fill="#FFFFFF"/>
+
+  <!-- Iris -->
+  <circle cx="100" cy="100" r="16" fill="#6EC9F5"/>
+  <circle cx="100" cy="100" r="7" fill="#0A2A43"/>
+  <circle cx="107" cy="93" r="4" fill="#FFFFFF"/>
+
+</svg>

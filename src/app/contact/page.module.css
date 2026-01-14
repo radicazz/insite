@@ -28,11 +28,12 @@
 }
 
 .brandMark {
-  width: 14px;
-  height: 14px;
-  border-radius: 6px;
-  background: linear-gradient(135deg, var(--accent) 0%, #94b4ff 100%);
-  box-shadow: 0 0 0 6px rgba(47, 107, 255, 0.12);
+  width: 24px;
+  height: 24px;
+  background-image: url("/logos/insites-network-eye.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
 }
 
 .nav {

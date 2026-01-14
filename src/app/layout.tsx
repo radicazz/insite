@@ -18,6 +18,10 @@ export const metadata: Metadata = {
   title: "insites — Digital Experiences & Growth Systems",
   description:
     "insites builds premium websites, social media packages, and AI training programs for modern brands.",
+  icons: {
+    icon: "/logos/insites-orb-eye.svg",
+    shortcut: "/logos/insites-orb-eye.svg",
+  },
 };
 
 export default function RootLayout({
