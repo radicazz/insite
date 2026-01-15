@@ -40,6 +40,10 @@ Target: self-hosted Linux server with systemd. Containerization is expected late
 - **Systemd**: keep service files and environment configuration minimal and portable.
 - **Containers**: Podman preferred, Docker compatible. Images and unit files will be added when the app is scaffolded.
 
+## Licensing
+- **Code and structure**: GPL-3.0 (see `LICENSE`).
+- **Assets and content**: proprietary (see `LICENSE-ASSETS`).
+
 ## Contributing
 - Follow `AGENTS.md` for workflow and conventions.
 - Keep commits small and use semantic prefixes (feat, fix, chore, docs, refactor).
