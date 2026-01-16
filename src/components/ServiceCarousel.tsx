@@ -104,6 +104,9 @@ export default function ServiceCarousel({ services }: ServiceCarouselProps) {
   return (
     <div
       className={styles.carousel}
+      role="region"
+      aria-label="Service highlights"
+      aria-roledescription="carousel"
       onMouseEnter={() => setIsHoverPaused(true)}
       onMouseLeave={() => setIsHoverPaused(false)}
       onFocusCapture={() => setIsHoverPaused(true)}

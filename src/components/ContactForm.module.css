@@ -20,6 +20,11 @@
   color: var(--text-primary);
 }
 
+.error {
+  font-size: 13px;
+  color: #b42318;
+}
+
 .input,
 .textarea {
   border-radius: 14px;

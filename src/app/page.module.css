@@ -58,8 +58,8 @@
 }
 
 .brandMark {
-  width: 26px;
-  height: 26px;
+  width: 30px;
+  height: 30px;
   background-image: url("/logos/insites-network-eye.svg");
   background-repeat: no-repeat;
   background-position: center;
@@ -67,7 +67,7 @@
 }
 
 .brandName {
-  font-size: 18px;
+  font-size: 20px;
 }
 
 .nav {
