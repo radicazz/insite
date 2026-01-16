@@ -1,0 +1,254 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+usage() {
+  cat <<'USAGE'
+Usage: scripts/deploy --host HOST --path PATH --service SERVICE [options]
+
+Syncs the repo to the remote server (rsync) or pulls via git, then restarts
+the systemd service.
+
+Required:
+  --host HOST            Remote host (or host:domain)
+  --path PATH            Remote deploy path (e.g. /srv/insites)
+  --service SERVICE      Systemd service name (e.g. insites.service)
+
+Options:
+  --user USER            SSH user (default: $DEPLOY_USER or current user)
+  --port PORT            SSH port (default: $DEPLOY_PORT or 22)
+  --identity FILE        SSH identity file (default: $DEPLOY_IDENTITY)
+  --delete               Delete remote files not present locally
+  --git                  Deploy by pulling from git on the server
+  --repo REPO_URL        Repo URL (required for first-time --git clone)
+  --branch BRANCH        Repo branch for --git (default: $DEPLOY_BRANCH or main)
+  --no-sudo              Restart service without sudo
+  --user-service         Use systemd --user instead of system service
+  -h, --help             Show this help
+
+Env overrides:
+  DEPLOY_HOST, DEPLOY_USER, DEPLOY_PORT, DEPLOY_PATH, DEPLOY_SERVICE,
+  DEPLOY_IDENTITY, DEPLOY_REPO, DEPLOY_BRANCH
+
+Examples:
+  scripts/deploy --host example.com --path /srv/insites --service insites.service
+  scripts/deploy --host example.com --user deploy --path /srv/insites \
+    --service insites.service --identity ~/.ssh/id_ed25519
+  scripts/deploy --host example.com --path /srv/insites \
+    --service insites.service --git --repo git@github.com:org/repo.git
+USAGE
+}
+
+host="${DEPLOY_HOST:-}"
+user="${DEPLOY_USER:-}"
+port="${DEPLOY_PORT:-22}"
+path="${DEPLOY_PATH:-}"
+service="${DEPLOY_SERVICE:-}"
+identity="${DEPLOY_IDENTITY:-}"
+repo="${DEPLOY_REPO:-}"
+branch="${DEPLOY_BRANCH:-main}"
+use_delete=false
+use_sudo=true
+user_service=false
+use_git=false
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --host)
+      host="$2"
+      shift 2
+      ;;
+    --user)
+      user="$2"
+      shift 2
+      ;;
+    --port)
+      port="$2"
+      shift 2
+      ;;
+    --path)
+      path="$2"
+      shift 2
+      ;;
+    --service)
+      service="$2"
+      shift 2
+      ;;
+    --identity)
+      identity="$2"
+      shift 2
+      ;;
+    --delete)
+      use_delete=true
+      shift
+      ;;
+    --git)
+      use_git=true
+      shift
+      ;;
+    --repo)
+      repo="$2"
+      shift 2
+      ;;
+    --branch)
+      branch="$2"
+      shift 2
+      ;;
+    --no-sudo)
+      use_sudo=false
+      shift
+      ;;
+    --user-service)
+      user_service=true
+      use_sudo=false
+      shift
+      ;;
+    -h|--help)
+      usage
+      exit 0
+      ;;
+    *)
+      echo "Unknown option: $1" >&2
+      usage
+      exit 1
+      ;;
+  esac
+done
+
+if [[ -z "$host" || -z "$path" || -z "$service" ]]; then
+  echo "Missing required arguments." >&2
+  usage
+  exit 1
+fi
+
+if [[ -z "$user" ]]; then
+  user="$USER"
+fi
+
+if ! command -v rsync >/dev/null 2>&1; then
+  if [[ "$use_git" == "false" ]]; then
+    echo "rsync is required but not found in PATH." >&2
+    exit 1
+  fi
+fi
+
+if ! command -v ssh >/dev/null 2>&1; then
+  echo "ssh is required but not found in PATH." >&2
+  exit 1
+fi
+
+root_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+remote_host="$host"
+if [[ -n "$user" ]]; then
+  remote_host="${user}@${host}"
+fi
+
+ssh_cmd=(ssh -p "$port")
+if [[ -n "$identity" ]]; then
+  ssh_cmd+=(-i "$identity")
+fi
+ssh_cmd_str="$(printf '%q ' "${ssh_cmd[@]}")"
+
+rsync_opts=(
+  -az
+  --exclude ".git/"
+  --exclude "node_modules/"
+  --exclude ".next/"
+  --exclude ".turbo/"
+  --exclude ".DS_Store"
+  --exclude "private/"
+  --exclude ".env"
+  --exclude ".env.*"
+  --exclude "npm-debug.log"
+  --exclude "pnpm-debug.log"
+)
+
+if [[ "$use_delete" == "true" ]]; then
+  rsync_opts+=(--delete)
+fi
+
+echo "→ Ensuring remote path exists: $path"
+${ssh_cmd[@]} "$remote_host" "mkdir -p '$path'"
+
+if [[ "$use_git" == "true" && "$use_delete" == "true" ]]; then
+  echo "--delete is not supported with --git." >&2
+  exit 1
+fi
+
+if [[ "$use_git" == "true" ]]; then
+  remote_git_script=$(
+    cat <<'REMOTE'
+set -euo pipefail
+path="$1"
+repo="$2"
+branch="$3"
+
+if ! command -v git >/dev/null 2>&1; then
+  echo "git is required on the server for --git deploys." >&2
+  exit 1
+fi
+
+if [[ -d "$path/.git" ]]; then
+  cd "$path"
+  git fetch --all --prune
+  echo "→ Previewing git changes"
+  diff_out="$(git --no-pager diff --stat "HEAD..origin/$branch" || true)"
+  if [[ -n "$diff_out" ]]; then
+    echo "$diff_out"
+  else
+    echo "No changes to apply."
+  fi
+  git checkout "$branch"
+  git pull --ff-only
+else
+  if [[ -z "$repo" ]]; then
+    echo "Missing --repo (or DEPLOY_REPO) for first-time clone." >&2
+    exit 1
+  fi
+  git clone --branch "$branch" "$repo" "$path"
+fi
+REMOTE
+  )
+
+  echo "→ Deploying via git on $remote_host:$path"
+  ${ssh_cmd[@]} "$remote_host" "bash -s" -- "$path" "$repo" "$branch" <<<"$remote_git_script"
+else
+  echo "→ Previewing sync changes"
+  preview_output="$(
+    rsync "${rsync_opts[@]}" --dry-run --itemize-changes --stats \
+      -e "$ssh_cmd_str" "$root_dir/" "$remote_host:$path/"
+  )"
+  preview_summary="$(
+    printf '%s\n' "$preview_output" | awk '
+      /^\\*deleting/ {deleted++; next}
+      /^[<>]/ {updated++; next}
+      /^Number of files transferred:/ {transferred=$5}
+      /^Total transferred file size:/ {size=$5" "$6}
+      END {
+        if (transferred == "") {
+          transferred = updated + 0
+        }
+        if (size == "") {
+          size = "0 bytes"
+        }
+        printf "Summary: %d to update, %d to delete, total transfer %s\n", transferred, deleted, size
+      }
+    '
+  )"
+  echo "$preview_summary"
+
+  echo "→ Syncing $root_dir to $remote_host:$path"
+  rsync "${rsync_opts[@]}" -e "$ssh_cmd_str" "$root_dir/" "$remote_host:$path/"
+fi
+
+if [[ "$user_service" == "true" ]]; then
+  restart_cmd="systemctl --user restart $service"
+elif [[ "$use_sudo" == "true" ]]; then
+  restart_cmd="sudo systemctl restart $service"
+else
+  restart_cmd="systemctl restart $service"
+fi
+
+echo "→ Restarting service: $service"
+${ssh_cmd[@]} "$remote_host" "$restart_cmd"
+
+echo "✓ Deploy complete"
