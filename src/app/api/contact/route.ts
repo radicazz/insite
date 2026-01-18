@@ -1,4 +1,7 @@
 import { NextResponse } from "next/server";
+import { writeFile, mkdir } from "fs/promises";
+import { existsSync } from "fs";
+import { join } from "path";
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const RATE_LIMIT_WINDOW_MS = 60_000;
@@ -66,40 +69,33 @@ export async function POST(request: Request) {
     );
   }
 
-  const webhookUrl = process.env.CONTACT_WEBHOOK_URL;
-  if (!webhookUrl) {
-    return NextResponse.json(
-      {
-        error:
-          "Contact is temporarily unavailable. Please email insitesglobal@gmail.com.",
-      },
-      { status: 503 }
-    );
-  }
+  // Log the contact submission to file
+  try {
+    const logsDir = join(process.cwd(), "logs");
+    if (!existsSync(logsDir)) {
+      await mkdir(logsDir, { recursive: true });
+    }
 
-  const webhookSecret = process.env.CONTACT_WEBHOOK_SECRET;
-  const forwardResponse = await fetch(webhookUrl, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      ...(webhookSecret ? { "x-contact-secret": webhookSecret } : {}),
-    },
-    body: JSON.stringify({
+    const timestamp = new Date().toISOString();
+    const logEntry = {
+      timestamp,
       name,
       email,
-      company: company || undefined,
+      company: company || null,
       message,
-      receivedAt: new Date().toISOString(),
       source: "insites-site",
-    }),
-  });
+    };
 
-  if (!forwardResponse.ok) {
+    const logFileName = join(logsDir, "contact-submissions.jsonl");
+    const logLine = JSON.stringify(logEntry) + "\n";
+    await writeFile(logFileName, logLine, { flag: "a" });
+
+    return NextResponse.json({ ok: true });
+  } catch (error) {
+    console.error("Failed to log contact submission:", error);
     return NextResponse.json(
-      { error: "Unable to deliver your message right now. Please try again later." },
-      { status: 502 }
+      { error: "Unable to process your message right now. Please email insitesglobal@gmail.com directly." },
+      { status: 500 }
     );
   }
-
-  return NextResponse.json({ ok: true });
 }
