@@ -24,33 +24,6 @@ const services = [
   },
 ];
 
-const testimonials = [
-  {
-    project: "Seaboard Collective",
-    result: "Conversion-focused website relaunch",
-    quote:
-      "insites mapped our positioning, rebuilt the site, and delivered a launch that finally matched our brand.",
-    name: "Jordan Lee",
-    title: "Founder",
-  },
-  {
-    project: "Lumen Hospitality",
-    result: "Social media cadence + campaign assets",
-    quote:
-      "We went from inconsistent posting to a clear system with measurable growth in engagement.",
-    name: "Priya Shah",
-    title: "Marketing Lead",
-  },
-  {
-    project: "Northline Ventures",
-    result: "AI training + workflow playbooks",
-    quote:
-      "The workshops were hands-on, and the team now saves hours every week with the new workflows.",
-    name: "Carlos Mendes",
-    title: "Operations Director",
-  },
-];
-
 export default function Home() {
   return (
     <div className={styles.page}>
@@ -58,7 +31,6 @@ export default function Home() {
         <SiteHeader
           navItems={[
             { label: "Services", href: "#services" },
-            { label: "Testimonials", href: "#testimonials" },
             { label: "Contact", href: "#contact", variant: "cta" },
           ]}
         />
@@ -114,34 +86,6 @@ export default function Home() {
                       <li key={feature}>{feature}</li>
                     ))}
                   </ul>
-                </article>
-              ))}
-            </div>
-          </section>
-
-          <section id="testimonials" className={styles.testimonials}>
-            <div className={styles.sectionHeader}>
-              <p className={styles.sectionEyebrow}>Projects & Testimonials</p>
-              <h2 className={styles.sectionTitle}>
-                Proof points that move brands forward.
-              </h2>
-              <p className={styles.sectionLead}>
-                A snapshot of recent engagements and the outcomes they unlocked.
-              </p>
-            </div>
-
-            <div className={styles.testimonialGrid}>
-              {testimonials.map((testimonial) => (
-                <article key={testimonial.project} className={styles.testimonialCard}>
-                  <div className={styles.testimonialMeta}>
-                    <span>Project</span>
-                    {testimonial.project}
-                  </div>
-                  <p className={styles.testimonialResult}>{testimonial.result}</p>
-                  <p className={styles.testimonialQuote}>&ldquo;{testimonial.quote}&rdquo;</p>
-                  <p className={styles.testimonialName}>
-                    {testimonial.name} · {testimonial.title}
-                  </p>
                 </article>
               ))}
             </div>
