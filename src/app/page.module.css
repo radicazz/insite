@@ -13,7 +13,7 @@
   right: -200px;
   width: 520px;
   height: 520px;
-  background: radial-gradient(circle at center, #b8caff 0%, rgba(184, 202, 255, 0) 70%);
+  background: var(--page-orb);
   opacity: 0.8;
   pointer-events: none;
 }
@@ -24,12 +24,12 @@
   inset: 0;
   background-image: linear-gradient(
       90deg,
-      rgba(23, 44, 96, 0.05) 1px,
+      var(--grid-line) 1px,
       transparent 1px
     ),
-    linear-gradient(rgba(23, 44, 96, 0.05) 1px, transparent 1px);
+    linear-gradient(var(--grid-line) 1px, transparent 1px);
   background-size: 48px 48px;
-  mask-image: radial-gradient(circle at 20% 20%, black 0%, transparent 70%);
+  mask-image: var(--page-mask);
   pointer-events: none;
 }
 
@@ -39,77 +39,6 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 28px 64px 120px;
-}
-
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-}
-
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-family: var(--font-space-grotesk), "Helvetica Neue", sans-serif;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-}
-
-.brandMark {
-  width: 30px;
-  height: 30px;
-  background-image: url("/logos/insites-network-eye.svg");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-}
-
-.brandName {
-  font-size: 20px;
-}
-
-.nav {
-  display: flex;
-  gap: 20px;
-  align-items: center;
-  font-size: 14px;
-  color: var(--text-secondary);
-}
-
-.navLink {
-  display: inline-flex;
-  align-items: center;
-  padding: 10px 0;
-  line-height: 1;
-}
-
-.nav a {
-  transition: color 0.2s ease;
-}
-
-.nav a:hover {
-  color: var(--text-primary);
-}
-
-.contactCta {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  border-radius: 999px;
-  padding: 10px 18px;
-  background: var(--text-primary);
-  color: var(--surface);
-  font-weight: 600;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  box-shadow: 0 16px 32px rgba(11, 18, 32, 0.2);
-}
-
-.contactCta:hover {
-  color: var(--surface);
-  transform: translateY(-1px);
-  box-shadow: 0 18px 36px rgba(11, 18, 32, 0.28);
 }
 
 
@@ -168,8 +97,8 @@
 
 .ctaPrimary {
   background: var(--accent);
-  color: var(--surface);
-  box-shadow: 0 16px 32px rgba(47, 107, 255, 0.3);
+  color: var(--cta-text);
+  box-shadow: var(--accent-shadow);
 }
 
 .ctaPrimary:hover {
@@ -226,7 +155,7 @@
   border-radius: 20px;
   padding: 28px;
   border: 1px solid var(--border);
-  box-shadow: 0 18px 36px rgba(16, 34, 72, 0.08);
+  box-shadow: var(--shadow-soft);
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -280,7 +209,7 @@
   border-radius: 20px;
   padding: 24px;
   border: 1px solid var(--border);
-  box-shadow: 0 18px 36px rgba(16, 34, 72, 0.08);
+  box-shadow: var(--shadow-soft);
   display: grid;
   gap: 14px;
 }
@@ -335,7 +264,7 @@
   padding: 24px;
   display: grid;
   gap: 16px;
-  box-shadow: 0 18px 36px rgba(16, 34, 72, 0.08);
+  box-shadow: var(--shadow-soft);
 }
 
 .contactCardTitle {
@@ -397,16 +326,6 @@
     padding: 20px 24px 80px;
   }
 
-  .header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .nav {
-    flex-wrap: wrap;
-    gap: 14px;
-  }
-
   .heroActions {
     width: 100%;
     flex-direction: column;
@@ -418,8 +337,4 @@
     justify-content: center;
   }
 
-  .nav .contactCta {
-    padding: 8px 14px;
-    font-size: 13px;
-  }
 }

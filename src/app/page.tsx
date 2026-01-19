@@ -1,5 +1,6 @@
 import ContactForm from "@/components/ContactForm";
 import ServiceCarousel from "@/components/ServiceCarousel";
+import SiteHeader from "@/components/SiteHeader";
 import styles from "./page.module.css";
 
 const services = [
@@ -54,23 +55,13 @@ export default function Home() {
   return (
     <div className={styles.page}>
       <div className={styles.shell}>
-        <header className={styles.header}>
-          <div className={styles.brand}>
-            <span className={styles.brandMark} aria-hidden="true" />
-            <span className={styles.brandName}>insites</span>
-          </div>
-          <nav className={styles.nav}>
-            <a className={styles.navLink} href="#services">
-              Services
-            </a>
-            <a className={styles.navLink} href="#testimonials">
-              Testimonials
-            </a>
-            <a className={styles.contactCta} href="#contact">
-              Contact
-            </a>
-          </nav>
-        </header>
+        <SiteHeader
+          navItems={[
+            { label: "Services", href: "#services" },
+            { label: "Testimonials", href: "#testimonials" },
+            { label: "Contact", href: "#contact", variant: "cta" },
+          ]}
+        />
 
         <main className={styles.main}>
           <section className={styles.hero}>

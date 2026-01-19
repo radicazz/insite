@@ -1,5 +1,5 @@
-import Link from "next/link";
 import ContactForm from "@/components/ContactForm";
+import SiteHeader from "@/components/SiteHeader";
 import styles from "./page.module.css";
 
 export const metadata = {
@@ -27,16 +27,12 @@ export default function ContactPage() {
   return (
     <div className={styles.page}>
       <div className={styles.shell}>
-        <header className={styles.header}>
-          <div className={styles.brand}>
-            <span className={styles.brandMark} aria-hidden="true" />
-            <span className={styles.brandName}>insites</span>
-          </div>
-          <nav className={styles.nav}>
-            <Link href="/">Home</Link>
-            <a href="mailto:insitesglobal@gmail.com">Email</a>
-          </nav>
-        </header>
+        <SiteHeader
+          navItems={[
+            { label: "Home", href: "/" },
+            { label: "Email", href: "mailto:insitesglobal@gmail.com" },
+          ]}
+        />
 
         <main className={styles.hero}>
           <div>

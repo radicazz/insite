@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Manrope, Space_Grotesk } from "next/font/google";
+import { cookies } from "next/headers";
 import "./globals.css";
+import { parseTheme, THEME_COOKIE } from "@/lib/theme";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 
@@ -47,13 +49,16 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const cookieStore = await cookies();
+  const theme = parseTheme(cookieStore.get(THEME_COOKIE)?.value);
+
   return (
-    <html lang="en">
+    <html lang="en" data-theme={theme}>
       <body className={`${manrope.variable} ${spaceGrotesk.variable}`}>
         {children}
       </body>

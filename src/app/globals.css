@@ -8,6 +8,63 @@
   --accent-strong: #1b4fd6;
   --border: #d7e1f6;
   --shadow: 0 32px 80px rgba(15, 30, 60, 0.16);
+  --shadow-soft: 0 18px 36px rgba(16, 34, 72, 0.08);
+  --accent-shadow: 0 16px 32px rgba(47, 107, 255, 0.3);
+  --cta-bg: #0b1220;
+  --cta-text: #ffffff;
+  --cta-shadow: 0 16px 32px rgba(11, 18, 32, 0.2);
+  --cta-shadow-strong: 0 18px 36px rgba(11, 18, 32, 0.28);
+  --page-orb: radial-gradient(circle at center, #b8caff 0%, rgba(184, 202, 255, 0) 70%);
+  --grid-line: rgba(23, 44, 96, 0.05);
+  --page-mask: radial-gradient(circle at 20% 20%, black 0%, transparent 70%);
+  --focus-ring: 0 0 0 3px rgba(47, 107, 255, 0.15);
+  --success: #1f7a3e;
+  --error: #b42318;
+  --brand-mark-filter: none;
+  --toggle-bg: #eef3ff;
+  --toggle-border: #d7e1f6;
+  --toggle-text: #0b1220;
+  --toggle-hover: #e3ecff;
+  --toggle-active: #d5e2ff;
+  --carousel-glow: radial-gradient(circle at top right, rgba(47, 107, 255, 0.18), transparent 55%);
+  --dot-bg: rgba(47, 107, 255, 0.2);
+}
+
+html[data-theme="light"] {
+  color-scheme: light;
+}
+
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --background: #0b0f16;
+  --surface: #141b26;
+  --surface-muted: #101725;
+  --text-primary: #f5f7fb;
+  --text-secondary: #a6b1c4;
+  --accent: #4c7dff;
+  --accent-strong: #7a9bff;
+  --border: #253047;
+  --shadow: 0 32px 80px rgba(3, 8, 20, 0.7);
+  --shadow-soft: 0 18px 36px rgba(3, 8, 20, 0.55);
+  --accent-shadow: 0 16px 32px rgba(76, 125, 255, 0.28);
+  --cta-bg: #4c7dff;
+  --cta-text: #f5f7fb;
+  --cta-shadow: 0 16px 32px rgba(9, 14, 28, 0.6);
+  --cta-shadow-strong: 0 18px 36px rgba(9, 14, 28, 0.72);
+  --page-orb: radial-gradient(circle at center, rgba(76, 125, 255, 0.32) 0%, rgba(76, 125, 255, 0) 70%);
+  --grid-line: rgba(120, 150, 255, 0.1);
+  --page-mask: radial-gradient(circle at 20% 20%, black 0%, transparent 60%);
+  --focus-ring: 0 0 0 3px rgba(76, 125, 255, 0.25);
+  --success: #3bb56d;
+  --error: #f05c4e;
+  --brand-mark-filter: brightness(0) invert(1);
+  --toggle-bg: #1a2332;
+  --toggle-border: #2b3751;
+  --toggle-text: #f5f7fb;
+  --toggle-hover: #223047;
+  --toggle-active: #2a3b57;
+  --carousel-glow: radial-gradient(circle at top right, rgba(76, 125, 255, 0.25), transparent 55%);
+  --dot-bg: rgba(76, 125, 255, 0.3);
 }
 
 html,
@@ -18,10 +75,11 @@ body {
 
 body {
   color: var(--text-primary);
-  background: var(--background);
+  background-color: var(--background);
   font-family: var(--font-manrope), "Helvetica Neue", Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 * {

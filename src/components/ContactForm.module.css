@@ -22,7 +22,7 @@
 
 .error {
   font-size: 13px;
-  color: #b42318;
+  color: var(--error);
 }
 
 .input,
@@ -45,7 +45,7 @@
 .textarea:focus {
   outline: none;
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(47, 107, 255, 0.15);
+  box-shadow: var(--focus-ring);
 }
 
 .footer {
@@ -66,11 +66,11 @@
   padding: 12px 22px;
   border: none;
   background: var(--accent);
-  color: var(--surface);
+  color: var(--cta-text);
   font-weight: 600;
   font-size: 14px;
   cursor: pointer;
-  box-shadow: 0 16px 32px rgba(47, 107, 255, 0.3);
+  box-shadow: var(--accent-shadow);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -90,11 +90,11 @@
 }
 
 .statusSuccess {
-  color: #1f7a3e;
+  color: var(--success);
 }
 
 .statusError {
-  color: #b42318;
+  color: var(--error);
 }
 
 .honeypot {

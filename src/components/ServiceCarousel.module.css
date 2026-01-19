@@ -15,7 +15,7 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at top right, rgba(47, 107, 255, 0.18), transparent 55%);
+  background: var(--carousel-glow);
   pointer-events: none;
 }
 
@@ -115,7 +115,7 @@
   width: 8px;
   height: 8px;
   border-radius: 999px;
-  background: rgba(47, 107, 255, 0.2);
+  background: var(--dot-bg);
   border: none;
   cursor: pointer;
   transition: transform 0.2s ease, background 0.2s ease;
