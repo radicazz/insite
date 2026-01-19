@@ -55,7 +55,7 @@ export default function Home() {
                   className={styles.ctaSecondary}
                   href="mailto:insitesglobal@gmail.com"
                 >
-                  Book a discovery call
+                  Book a call
                 </a>
               </div>
             </div>
