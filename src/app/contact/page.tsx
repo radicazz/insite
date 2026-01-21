@@ -14,12 +14,21 @@ export const metadata = {
     description:
       "Get in touch with insites about websites, social media packages, or AI training. Share your goals and timeline to start a tailored plan.",
     url: "/contact",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "insites logo",
+      },
+    ],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "Contact — insites",
     description:
       "Get in touch with insites about websites, social media packages, or AI training. Share your goals and timeline to start a tailored plan.",
+    images: ["/opengraph-image"],
   },
 };
 

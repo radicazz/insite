@@ -32,12 +32,21 @@ export const metadata: Metadata = {
       "insites builds premium websites, social media packages, and AI training programs for modern brands.",
     url: "/",
     type: "website",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "insites logo",
+      },
+    ],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "insites — Digital Experiences & Growth Systems",
     description:
       "insites builds premium websites, social media packages, and AI training programs for modern brands.",
+    images: ["/opengraph-image"],
   },
   robots: {
     index: true,
