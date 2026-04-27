@@ -100,3 +100,29 @@ textarea:focus-visible {
   outline: 3px solid var(--accent);
   outline-offset: 3px;
 }
+
+/* Skip-to-main-content link — hidden until focused via keyboard */
+.skip-to-main {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  translate: -50% 0;
+  z-index: 9999;
+  padding: 10px 20px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--cta-text);
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+  transform: translateY(-120%);
+  transition: transform 0.2s ease;
+  pointer-events: none;
+}
+
+.skip-to-main:focus-visible {
+  transform: translateY(0);
+  pointer-events: auto;
+  outline: 3px solid var(--accent-strong);
+  outline-offset: 3px;
+}

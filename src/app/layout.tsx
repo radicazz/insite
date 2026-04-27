@@ -69,6 +69,9 @@ export default async function RootLayout({
   return (
     <html lang="en" data-theme={theme}>
       <body className={`${manrope.variable} ${spaceGrotesk.variable}`}>
+        <a href="#main-content" className="skip-to-main">
+          Skip to main content
+        </a>
         {children}
       </body>
     </html>
