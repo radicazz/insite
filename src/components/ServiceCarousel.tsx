@@ -1,13 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import type { Service } from "@/lib/types";
 import styles from "./ServiceCarousel.module.css";
-
-type Service = {
-  title: string;
-  summary: string;
-  features: string[];
-};
 
 type ServiceCarouselProps = {
   services: Service[];
