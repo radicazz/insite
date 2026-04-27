@@ -194,15 +194,19 @@
 }
 
 .serviceList li {
-  padding-left: 22px;
+  padding-left: 18px;
   position: relative;
 }
 
 .serviceList li::before {
-  content: "•";
+  content: "";
   position: absolute;
-  left: 8px;
-  color: var(--accent);
+  left: 0;
+  top: 6px;
+  width: 8px;
+  height: 8px;
+  border-radius: 3px;
+  background: var(--accent);
 }
 
 
