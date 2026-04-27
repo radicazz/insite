@@ -1,8 +1,7 @@
 import Link from "next/link";
-import { cookies } from "next/headers";
 import ThemeToggle from "@/components/ThemeToggle";
+import type { Theme } from "@/lib/theme";
 import styles from "./SiteHeader.module.css";
-import { parseTheme, THEME_COOKIE } from "@/lib/theme";
 
 type NavItem = {
   label: string;
@@ -12,15 +11,13 @@ type NavItem = {
 
 type SiteHeaderProps = {
   navItems: NavItem[];
+  initialTheme: Theme;
 };
 
 const isInternalLink = (href: string) =>
   href.startsWith("/") && !href.startsWith("//");
 
-export default async function SiteHeader({ navItems }: SiteHeaderProps) {
-  const cookieStore = await cookies();
-  const theme = parseTheme(cookieStore.get(THEME_COOKIE)?.value);
-
+export default function SiteHeader({ navItems, initialTheme }: SiteHeaderProps) {
   return (
     <header className={styles.header}>
       <div className={styles.brandRow}>
@@ -28,7 +25,7 @@ export default async function SiteHeader({ navItems }: SiteHeaderProps) {
           <span className={styles.brandMark} aria-hidden="true" />
           <span className={styles.brandName}>insites</span>
         </Link>
-        <ThemeToggle initialTheme={theme} />
+        <ThemeToggle initialTheme={initialTheme} />
       </div>
       <nav className={styles.nav}>
         {navItems.map((item) => {

@@ -1,21 +1,27 @@
+import { cookies } from "next/headers";
 import ContactForm from "@/components/ContactForm";
 import ServiceCarousel from "@/components/ServiceCarousel";
 import SiteHeader from "@/components/SiteHeader";
 import { services } from "@/data/services";
+import { parseTheme, THEME_COOKIE } from "@/lib/theme";
 import styles from "./page.module.css";
 
-export default function Home() {
+export default async function Home() {
+  const cookieStore = await cookies();
+  const theme = parseTheme(cookieStore.get(THEME_COOKIE)?.value);
+
   return (
     <div className={styles.page}>
       <div className={styles.shell}>
         <SiteHeader
+          initialTheme={theme}
           navItems={[
             { label: "Services", href: "#services" },
             { label: "Contact", href: "#contact", variant: "cta" },
           ]}
         />
 
-        <main className={styles.main}>
+        <main id="main-content" className={styles.main}>
           <section className={styles.hero}>
             <div>
               <p className={styles.eyebrow}>Insites Global</p>
@@ -31,10 +37,7 @@ export default function Home() {
                 <a className={styles.ctaPrimary} href="#services">
                   Explore services
                 </a>
-                <a
-                  className={styles.ctaSecondary}
-                  href="mailto:insitesglobal@gmail.com"
-                >
+                <a className={styles.ctaSecondary} href="#contact">
                   Book a call
                 </a>
               </div>
@@ -87,24 +90,28 @@ export default function Home() {
               <ContactForm />
               <div className={styles.contactCard}>
                 <p className={styles.contactCardTitle}>What happens next</p>
-                <div className={styles.contactList}>
+                <dl className={styles.contactList}>
                   <div>
-                    <span>Response time</span>
-                    1-2 business days
+                    <dt>Response time</dt>
+                    <dd>1-2 business days</dd>
                   </div>
                   <div>
-                    <span>Discovery call</span>
-                    30 minutes, focused on goals + scope
+                    <dt>Discovery call</dt>
+                    <dd>30 minutes, focused on goals + scope</dd>
                   </div>
                   <div>
-                    <span>Start window</span>
-                    Typically within 2-3 weeks
+                    <dt>Start window</dt>
+                    <dd>Typically within 2-3 weeks</dd>
                   </div>
                   <div>
-                    <span>Direct email</span>
-                    insitesglobal@gmail.com
+                    <dt>Direct email</dt>
+                    <dd>
+                      <a href="mailto:insitesglobal@gmail.com">
+                        insitesglobal@gmail.com
+                      </a>
+                    </dd>
                   </div>
-                </div>
+                </dl>
                 <div className={styles.contactNote}>
                   If you have a launch deadline, mention it in your message so
                   we can align on timing and milestones.

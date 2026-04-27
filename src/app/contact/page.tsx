@@ -1,5 +1,7 @@
+import { cookies } from "next/headers";
 import ContactForm from "@/components/ContactForm";
 import SiteHeader from "@/components/SiteHeader";
+import { parseTheme, THEME_COOKIE } from "@/lib/theme";
 import styles from "./page.module.css";
 
 export const metadata = {
@@ -32,47 +34,55 @@ export const metadata = {
   },
 };
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  const cookieStore = await cookies();
+  const theme = parseTheme(cookieStore.get(THEME_COOKIE)?.value);
+
   return (
     <div className={styles.page}>
       <div className={styles.shell}>
         <SiteHeader
+          initialTheme={theme}
           navItems={[
             { label: "Home", href: "/" },
             { label: "Email", href: "mailto:insitesglobal@gmail.com" },
           ]}
         />
 
-        <main className={styles.hero}>
+        <main id="main-content" className={styles.hero}>
           <div>
             <p className={styles.eyebrow}>Contact</p>
-            <h1 className={styles.title}>Let’s build your next digital move.</h1>
+            <h1 className={styles.title}>Let's build your next digital move.</h1>
             <p className={styles.lead}>
-              Tell us about your project, timeline, and goals. We’ll reply with
+              Tell us about your project, timeline, and goals. We'll reply with
               a tailored plan, project scope, and next steps.
             </p>
             <ContactForm />
           </div>
           <aside className={styles.sideCard}>
             <p className={styles.sideTitle}>Details</p>
-            <div className={styles.detailList}>
+            <dl className={styles.detailList}>
               <div>
-                <span>Email</span>
-                insitesglobal@gmail.com
+                <dt>Email</dt>
+                <dd>
+                  <a href="mailto:insitesglobal@gmail.com">
+                    insitesglobal@gmail.com
+                  </a>
+                </dd>
               </div>
               <div>
-                <span>Response time</span>
-                1-2 business days
+                <dt>Response time</dt>
+                <dd>1-2 business days</dd>
               </div>
               <div>
-                <span>Discovery call</span>
-                30 minutes, strategy-focused
+                <dt>Discovery call</dt>
+                <dd>30 minutes, strategy-focused</dd>
               </div>
               <div>
-                <span>Project kickoff</span>
-                Typically within 2-3 weeks
+                <dt>Project kickoff</dt>
+                <dd>Typically within 2-3 weeks</dd>
               </div>
-            </div>
+            </dl>
             <div className={styles.note}>
               Share any constraints or launch deadlines so we can map the right
               scope and timeline.
