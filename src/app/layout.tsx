@@ -19,7 +19,10 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "High-Quality Digital Experiences",
+  title: {
+    default: "insites — High-Quality Digital Experiences",
+    template: "%s | insites",
+  },
   description:
     "insites builds premium websites, social media packages, and AI training programs for modern brands.",
   metadataBase: new URL(siteUrl),
