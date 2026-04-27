@@ -269,13 +269,14 @@
     grid-template-columns: 1fr;
   }
 
-  .servicesGrid {
-    grid-template-columns: 1fr;
-  }
-
-
   .contactGrid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .servicesGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -286,6 +287,10 @@
 
   .shell {
     padding: 20px 24px 80px;
+  }
+
+  .servicesGrid {
+    grid-template-columns: 1fr;
   }
 
   .heroActions {
