@@ -1,9 +1,42 @@
 .page {
+  position: relative;
   min-height: 100vh;
   background: var(--background);
+  overflow-x: hidden;
+}
+
+/* Ambient orb — mirrored to left side to distinguish from home page */
+.page::before {
+  content: "";
+  position: absolute;
+  top: -200px;
+  left: -150px;
+  width: 480px;
+  height: 480px;
+  background: var(--page-orb);
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* Subtle grid overlay */
+.page::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(
+      90deg,
+      var(--grid-line) 1px,
+      transparent 1px
+    ),
+    linear-gradient(var(--grid-line) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(circle at 80% 20%, black 0%, transparent 65%);
+  pointer-events: none;
 }
 
 .shell {
+  position: relative;
+  z-index: 1;
   max-width: 1200px;
   margin: 0 auto;
   padding: 32px 64px 48px;
@@ -105,6 +138,10 @@
 }
 
 @media (max-width: 640px) {
+  .page::after {
+    background-image: none;
+  }
+
   .shell {
     padding: 20px 24px 32px;
   }
