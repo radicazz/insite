@@ -223,15 +223,32 @@
 .contactList {
   display: grid;
   gap: 12px;
-  color: var(--text-secondary);
   font-size: 14px;
 }
 
-.contactList span {
-  display: block;
+.contactList > div {
+  display: grid;
+  gap: 2px;
+}
+
+.contactList dt {
   color: var(--text-primary);
   font-weight: 600;
-  margin-bottom: 4px;
+}
+
+.contactList dd {
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.contactList dd a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.contactList dd a:hover {
+  color: var(--accent-strong);
 }
 
 .contactNote {

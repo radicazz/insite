@@ -57,15 +57,32 @@
 .detailList {
   display: grid;
   gap: 12px;
-  color: var(--text-secondary);
   font-size: 14px;
 }
 
-.detailList span {
-  display: block;
+.detailList > div {
+  display: grid;
+  gap: 2px;
+}
+
+.detailList dt {
   color: var(--text-primary);
   font-weight: 600;
-  margin-bottom: 4px;
+}
+
+.detailList dd {
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.detailList dd a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.detailList dd a:hover {
+  color: var(--accent-strong);
 }
 
 .note {
