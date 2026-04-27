@@ -3,6 +3,7 @@ import ContactForm from "@/components/ContactForm";
 import ServiceCarousel from "@/components/ServiceCarousel";
 import SiteHeader from "@/components/SiteHeader";
 import { services } from "@/data/services";
+import { testimonials } from "@/data/testimonials";
 import { parseTheme, THEME_COOKIE } from "@/lib/theme";
 import styles from "./page.module.css";
 
@@ -70,6 +71,35 @@ export default async function Home() {
                     ))}
                   </ul>
                 </article>
+              ))}
+            </div>
+          </section>
+
+          <section id="testimonials" className={styles.testimonials}>
+            <div className={styles.sectionHeader}>
+              <p className={styles.sectionEyebrow}>Results</p>
+              <h2 className={styles.sectionTitle}>
+                Brands that grew with insites.
+              </h2>
+              <p className={styles.sectionLead}>
+                Real outcomes from teams who trusted us to build, launch, and
+                scale their digital presence.
+              </p>
+            </div>
+
+            <div className={styles.testimonialsGrid}>
+              {testimonials.map((t) => (
+                <figure key={t.author} className={styles.testimonialCard}>
+                  <blockquote className={styles.testimonialQuote}>
+                    <p>{t.quote}</p>
+                  </blockquote>
+                  <figcaption className={styles.testimonialMeta}>
+                    <span className={styles.testimonialAuthor}>{t.author}</span>
+                    <span className={styles.testimonialRole}>
+                      {t.role}, {t.company}
+                    </span>
+                  </figcaption>
+                </figure>
               ))}
             </div>
           </section>
