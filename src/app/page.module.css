@@ -38,7 +38,7 @@
   z-index: 1;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 28px 64px 120px;
+  padding: 28px 64px 48px;
 }
 
 
@@ -355,7 +355,7 @@
 
 @media (max-width: 980px) {
   .shell {
-    padding: 24px 40px 96px;
+    padding: 24px 40px 40px;
   }
 
   .hero {
@@ -380,7 +380,7 @@
   }
 
   .shell {
-    padding: 20px 24px 80px;
+    padding: 20px 24px 32px;
   }
 
   .servicesGrid,

@@ -1,6 +1,7 @@
 import { cookies } from "next/headers";
 import ContactForm from "@/components/ContactForm";
 import ServiceCarousel from "@/components/ServiceCarousel";
+import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
 import { services } from "@/data/services";
 import { testimonials } from "@/data/testimonials";
@@ -150,6 +151,8 @@ export default async function Home() {
             </div>
           </section>
         </main>
+
+        <SiteFooter />
       </div>
     </div>
   );

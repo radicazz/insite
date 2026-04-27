@@ -1,5 +1,6 @@
 import { cookies } from "next/headers";
 import ContactForm from "@/components/ContactForm";
+import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
 import { parseTheme, THEME_COOKIE } from "@/lib/theme";
 import styles from "./page.module.css";
@@ -89,6 +90,8 @@ export default async function ContactPage() {
             </div>
           </aside>
         </main>
+
+        <SiteFooter />
       </div>
     </div>
   );
