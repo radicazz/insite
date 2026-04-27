@@ -53,9 +53,9 @@ export default async function ContactPage() {
         <main id="main-content" className={styles.hero}>
           <div>
             <p className={styles.eyebrow}>Contact</p>
-            <h1 className={styles.title}>Let's build your next digital move.</h1>
+            <h1 className={styles.title}>Let&apos;s build your next digital move.</h1>
             <p className={styles.lead}>
-              Tell us about your project, timeline, and goals. We'll reply with
+              Tell us about your project, timeline, and goals. We&apos;ll reply with
               a tailored plan, project scope, and next steps.
             </p>
             <ContactForm />
