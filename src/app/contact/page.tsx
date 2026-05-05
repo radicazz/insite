@@ -6,14 +6,14 @@ import { parseTheme, THEME_COOKIE } from "@/lib/theme";
 import styles from "./page.module.css";
 
 export const metadata = {
-  title: "Contact — insites",
+  title: "Contact | insites",
   description:
     "Get in touch with insites about websites, social media packages, or AI training. Share your goals and timeline to start a tailored plan.",
   alternates: {
     canonical: "/contact",
   },
   openGraph: {
-    title: "Contact — insites",
+    title: "Contact | insites",
     description:
       "Get in touch with insites about websites, social media packages, or AI training. Share your goals and timeline to start a tailored plan.",
     url: "/contact",
@@ -28,7 +28,7 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Contact — insites",
+    title: "Contact | insites",
     description:
       "Get in touch with insites about websites, social media packages, or AI training. Share your goals and timeline to start a tailored plan.",
     images: ["/opengraph-image"],
