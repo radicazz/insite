@@ -115,12 +115,14 @@ textarea:focus-visible {
   font-size: 14px;
   font-weight: 600;
   white-space: nowrap;
-  transform: translateY(-120%);
-  transition: transform 0.2s ease;
+  opacity: 0;
+  transform: translateY(calc(-100% - 32px));
+  transition: transform 0.2s ease, opacity 0.2s ease;
   pointer-events: none;
 }
 
 .skip-to-main:focus-visible {
+  opacity: 1;
   transform: translateY(0);
   pointer-events: auto;
   outline: 3px solid var(--accent-strong);
