@@ -6,7 +6,7 @@ Purpose: keep contributions consistent, maintainable, and portable for the "insi
 - Build a modern, sleek, professional business website for "insites".
 - Stack: Next.js + React + TypeScript.
 - Primary pages/sections: Landing (services), Projects/Testimonials, Contact.
-- Visual direction: light theme, white base with blue accents.
+- Visual direction: dark theme default (dark navy + blue accent); light theme fully supported via toggle and cookie.
 - Hosting: portable/self-hosted Linux with systemd; containers (Podman preferred, Docker compatible) planned.
 
 ## Working Agreements
